@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { baseUrl } from '../environment/config';
 
 export const getAllUsers = async () => {
   const options = {
     mehtod: 'GET',
-    url: '/api/users',
+    url: `${baseUrl}/api/users`,
     headers: {
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
-    },
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
 
   const { data } = await axios.request(options);
@@ -17,10 +18,10 @@ export const getAllUsers = async () => {
 export const getUserById = async (id) => {
   const options = {
     method: 'GET',
-    url: `/users/${id}`,
+    url: `${baseUrl}/users/${id}`,
     headers: {
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
-    },
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
   const { data } = await axios.request(options);
 
@@ -30,10 +31,10 @@ export const getUserById = async (id) => {
 export const createUser = async () => {
   const options = {
     method: 'POST',
-    url: '/api/users',
+    url: `${baseUrl}/api/users`,
     headers: {
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
-    },
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
 
   const { data } = await axios.request(options);
@@ -44,10 +45,10 @@ export const createUser = async () => {
 export const updateUser = async (id) => {
   const options = {
     method: 'PUT',
-    url: `/api/${id}`,
+    url: `${baseUrl}/api/${id}`,
     headers: {
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
-    },
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
 
   const { data } = await axios.request(options);
@@ -58,10 +59,10 @@ export const updateUser = async (id) => {
 export const deleteUser = async (id) => {
   const options = {
     method: 'DELETE',
-    url: `/api/users/${id}`,
+    url: `${baseUrl}/api/users/${id}`,
     headers: {
-      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
-    },
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
 
   const { data } = await axios.request(options);

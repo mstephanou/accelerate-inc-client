@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { baseUrl } from '../environment/config';
 
-export const loginUser = credentials =>
+export const loginUser = (credentials) =>
   axios
     .request({
       method: 'POST',
-      url: '/api/login',
-      data: credentials,
+      url: `${baseUrl}/api/login`,
+      data: credentials
     })
     .then(({ data }) => {
       data.token
@@ -16,10 +17,10 @@ export const loginUser = credentials =>
     })
     .catch(console.error);
 
-export const getUserById = id =>
+export const getUserById = (id) =>
   axios
     .request({
       method: 'GET',
-      url: `/api/users/${id}`,
+      url: `${baseUrl}/api/users/${id}`
     })
     .then(({ data }) => data);

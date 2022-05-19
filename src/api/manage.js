@@ -1,46 +1,47 @@
 import axios from 'axios';
+import { baseUrl } from '../environment/config';
 
 const token = sessionStorage.getItem('token');
 
-const getArticlesByUserId = id =>
+const getArticlesByUserId = (id) =>
   axios
     .request({
       method: 'GET',
-      url: `/api/manage/articles`,
+      url: `${baseUrl}/api/manage/articles`,
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
       params: {
-        author: id,
-      },
+        author: id
+      }
     })
     .then(({ data }) => data);
 
-const getArticlesByStatus = status =>
+const getArticlesByStatus = (status) =>
   axios
     .request({
       method: 'GET',
-      url: `/api/manage/articles/status/`,
+      url: `${baseUrl}/api/manage/articles/status/`,
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
       params: {
-        status,
-      },
+        status
+      }
     })
     .then(({ data }) => data);
 
-const createArticle = article =>
+const createArticle = (article) =>
   axios.request({
     method: 'POST',
-    url: '/api/articles',
+    url: `${baseUrl}/api/articles`,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`
     },
-    data: article,
+    data: article
   });
 
-const updateArticle = async article => {
+const updateArticle = async (article) => {
   try {
     await axios.put(`/api/articles/${article._id}`, article);
   } catch (error) {
@@ -48,10 +49,10 @@ const updateArticle = async article => {
   }
 };
 
-const removeArticle = articleId =>
+const removeArticle = (articleId) =>
   axios.request({
     method: 'DELETE',
-    url: `/api/articles/${articleId}`,
+    url: `${baseUrl}/api/articles/${articleId}`
   });
 
 export {
@@ -59,29 +60,29 @@ export {
   getArticlesByStatus,
   createArticle,
   updateArticle,
-  removeArticle,
+  removeArticle
 };
 
 const getSessions = () =>
   axios.request({
     method: 'GET',
-    url: '/api/sessions',
+    url: `${baseUrl}/api/sessions`,
     headers: {
-      authorization: `Bearer ${token}`,
-    },
+      authorization: `Bearer ${token}`
+    }
   });
 
-const createSessions = session =>
+const createSessions = (session) =>
   axios.request({
     method: 'POST',
-    url: '/api/sessions',
+    url: `${baseUrl}/api/sessions`,
     headers: {
-      authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`
     },
-    data: session,
+    data: session
   });
 
-const updateSession = async session => {
+const updateSession = async (session) => {
   try {
     await axios.put(`/api/sessions/${session._id}`, session);
   } catch (error) {
@@ -89,28 +90,28 @@ const updateSession = async session => {
   }
 };
 
-const getSessionsByStatus = status =>
+const getSessionsByStatus = (status) =>
   axios
     .request({
       method: 'GET',
-      url: `/api/sessions/status/`,
+      url: `${baseUrl}/api/sessions/status/`,
       headers: {
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`
       },
       params: {
-        sessionStatus: status,
-      },
+        sessionStatus: status
+      }
     })
     .then(({ data }) => data);
 
-const getSessionById = id =>
+const getSessionById = (id) =>
   axios
     .request({
       method: 'GET',
-      url: `/api/sessions/${id}`,
+      url: `${baseUrl}/api/sessions/${id}`,
       headers: {
-        authorization: `Bearer ${token}`,
-      },
+        authorization: `Bearer ${token}`
+      }
     })
     .then(({ data }) => data);
 
@@ -119,5 +120,5 @@ export {
   getSessionById,
   createSessions,
   updateSession,
-  getSessionsByStatus,
+  getSessionsByStatus
 };
